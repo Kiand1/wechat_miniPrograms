@@ -1,0 +1,42 @@
+<view class="container">
+  <scroll-view class="chat-area" scroll-y scroll-into-view="{{scrollToView}}">
+    <!-- 欢迎消息 -->
+    <view class="message-item ai-message">
+      <view class="message-content">
+        <text>你好！我是网络安全库AI助手，请问有什么可以帮助你？</text>
+      </view>
+    </view>
+    
+    <!-- 对话历史 -->
+    <block wx:if="{{aiResponse}}">
+      <!-- 用户消息 -->
+      <view class="message-item user-message">
+        <view class="message-content">
+          <text>{{lastUserMessage}}</text>
+        </view>
+      </view>
+      <!-- AI回复 -->
+      <view class="message-item ai-message" id="lastMessage">
+        <view class="message-content">
+          <text>{{aiResponse}}</text>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+  
+  <view class="input-area">
+    <input 
+      class="message-input" 
+      placeholder="输入消息..." 
+      value="{{inputMessage}}"
+      bindinput="onInputChange"
+    />
+    <button 
+      class="send-button" 
+      bindtap="sendMessage"
+      loading="{{loading}}"
+    >
+      <text class="send-icon">发送</text>
+    </button>
+  </view>
+</view> 
